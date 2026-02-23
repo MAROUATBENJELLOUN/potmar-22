@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maroua Touimi Benjelloun — Assistante Digitale & Créatrice de Contenu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F9F6F1;
+    --dark: #1C1A18;
+    --rose: #C47E8A;
+    --rose-light: #D9A0AA;
+    --rose-pale: #F2DDE1;
+    --mid: #6A6360;
+    --border: rgba(196,126,138,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 5rem;
+    background: rgba(249,246,241,0.93);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--rose); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    padding-top: 72px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 6rem;
+    position: relative;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 12%; bottom: 12%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border), transparent);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s ease forwards;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--rose);
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 4.2vw, 4.2rem);
+    line-height: 1.06;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.25s ease forwards;
+  }
+
+  .hero-name .first { display: block; }
+  .hero-name .last { display: block; color: var(--rose); font-style: italic; }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--mid);
+    margin-bottom: 2rem;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s ease forwards;
+  }
+
+  .hero-bio {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.08rem;
+    color: var(--mid);
+    line-height: 1.85;
+    max-width: 460px;
+    margin-bottom: 2.8rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.55s ease forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.7s ease forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: var(--rose);
+    color: white;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-primary:hover { background: var(--rose-light); }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    border: 1px solid var(--border);
+    color: var(--mid);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 3rem 4rem 4rem;
+  }
+
+  .hero-visual { width: 320px; position: relative; }
+
+  .hv-card {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+
+  .hv-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--rose);
+  }
+
+  .hv-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.5rem;
+  }
+
+  .hv-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+  }
+
+  .hv-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.92rem;
+    color: var(--mid);
+    margin-top: 0.2rem;
+  }
+
+  .hv-emojis {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .emoji-b {
+    width: 44px; height: 44px;
+    background: white;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    border-radius: 50%;
+  }
+
+  /* SECTIONS */
+  section { padding: 7rem 6rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    margin-bottom: 4.5rem;
+  }
+
+  .section-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(196,126,138,0.2);
+    line-height: 1;
+  }
+
+  .section-eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.35rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+    font-weight: 600;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+  }
+
+  /* ABOUT */
+  #about { background: var(--dark); }
+  #about .section-number { color: rgba(196,126,138,0.15); }
+  #about .section-title { color: #F9F6F1; }
+  #about .section-line { background: linear-gradient(to right, rgba(196,126,138,0.25), transparent); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 5rem;
+  }
+
+  .about-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: rgba(249,246,241,0.72);
+    margin-bottom: 1.5rem;
+  }
+  .about-text p strong { color: var(--rose-light); font-weight: 500; }
+
+  .highlight-item {
+    display: flex;
+    gap: 1.2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(196,126,138,0.12);
+    align-items: flex-start;
+  }
+
+  .hi-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  .hi-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.25rem;
+  }
+
+  .hi-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(249,246,241,0.75);
+    line-height: 1.5;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--cream); }
+
+  .skills-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .skills-col-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--rose);
+    margin-bottom: 1.8rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(196,126,138,0.1);
+    transition: padding-left 0.3s;
+    cursor: default;
+  }
+  .skill-item:hover { padding-left: 0.5rem; }
+
+  .si-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--rose);
+    flex-shrink: 0;
+    opacity: 0.45;
+    transition: opacity 0.3s;
+  }
+  .skill-item:hover .si-dot { opacity: 1; }
+
+  .si-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    transition: color 0.3s;
+  }
+  .skill-item:hover .si-text { color: var(--rose); }
+
+  .skills-perso {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 2.2rem;
+  }
+
+  .perso-chips { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1rem; }
+
+  .chip {
+    font-size: 0.63rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    color: var(--mid);
+    background: var(--cream);
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .chip:hover { background: var(--rose-pale); border-color: var(--rose); color: var(--rose); }
+
+  /* PROJETS */
+  #projects { background: #F2ECE8; }
+
+  .projects-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--mid);
+    line-height: 1.8;
+    max-width: 620px;
+    margin-bottom: 3.5rem;
+    font-style: italic;
+  }
+
+  .ambitions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .amb-card {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+  .amb-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px; width: 0;
+    background: var(--rose);
+    transition: width 0.4s;
+  }
+  .amb-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(196,126,138,0.12); }
+  .amb-card:hover::after { width: 100%; }
+
+  .amb-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--rose-pale);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .amb-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .amb-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--dark); }
+  #contact .section-number { color: rgba(196,126,138,0.15); }
+  #contact .section-title { color: #F9F6F1; }
+  #contact .section-line { background: linear-gradient(to right, rgba(196,126,138,0.25), transparent); }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+  }
+
+  .contact-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: rgba(249,246,241,0.65);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(196,126,138,0.12);
+    transition: padding-left 0.3s;
+  }
+  .contact-link:hover { padding-left: 0.8rem; }
+
+  .cl-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(196,126,138,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
+  .contact-link:hover .cl-icon { background: var(--rose); border-color: var(--rose); }
+
+  .cl-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .cl-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(249,246,241,0.75);
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.4rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-field { display: flex; flex-direction: column; gap: 0.45rem; }
+
+  .form-field label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+  }
+
+  .form-field input,
+  .form-field textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(196,126,138,0.18);
+    color: rgba(249,246,241,0.85);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    padding: 0.85rem 1.1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(249,246,241,0.25); }
+  .form-field input:focus,
+  .form-field textarea:focus { border-color: var(--rose); }
+
+  .btn-rose {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2.4rem;
+    background: var(--rose);
+    color: white;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn-rose:hover { background: var(--rose-light); }
+
+  footer {
+    background: #141210;
+    padding: 2rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(196,126,138,0.1);
+  }
+
+  footer p {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: rgba(249,246,241,0.25);
+  }
+
+  .footer-heart { color: var(--rose); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.8rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 5rem 2rem 4rem; }
+    section { padding: 5rem 1.8rem; }
+    .about-grid, .contact-layout, .skills-columns { grid-template-columns: 1fr; gap: 2.5rem; }
+    .ambitions-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem 1.8rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .ambitions-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Maroua <span>TB</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <span class="hero-badge"><span class="badge-dot"></span>Disponible pour des missions freelance</span>
+    <h1 class="hero-name">
+      <span class="first">Maroua Touimi</span>
+      <span class="last">Benjelloun</span>
+    </h1>
+    <p class="hero-subtitle">Assistante Digitale & Créatrice de Contenu</p>
+    <p class="hero-bio">Passionnée par l'organisation, le design simple et la communication visuelle, j'aide les petites entreprises et créateurs à améliorer leur présence en ligne — avec sérieux, créativité et envie d'apprendre chaque jour.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">Mes projets & ambitions</a>
+      <a href="#contact" class="btn-secondary">Me contacter</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hv-card">
+        <p class="hv-label">Spécialité principale</p>
+        <p class="hv-value">Création de Contenu Visuel</p>
+        <p class="hv-sub">Canva · Instagram · Stories</p>
+      </div>
+      <div class="hv-card">
+        <p class="hv-label">Ce que j'apporte</p>
+        <p class="hv-value">Organisation & Fiabilité</p>
+        <p class="hv-sub">Sérieuse · Motivée · Rapide</p>
+      </div>
+      <div class="hv-card">
+        <p class="hv-label">Services proposés</p>
+        <p class="hv-value">Micro-services Digitaux</p>
+        <p class="hv-sub">Visuels · Docs · Réseaux sociaux</p>
+      </div>
+      <div class="hv-emojis">
+        <div class="emoji-b">✨</div>
+        <div class="emoji-b">🎨</div>
+        <div class="emoji-b">📱</div>
+        <div class="emoji-b">💡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <div>
+      <p class="section-eyebrow">Qui suis-je</p>
+      <h2 class="section-title">À propos</h2>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Je m'appelle <strong>Maroua</strong>, assistante digitale et créatrice de contenu débutante. Passionnée par l'organisation, le design simple et la communication visuelle, j'aide les <strong>petites entreprises et créateurs</strong> à améliorer leur présence en ligne.</p>
+      <p>Je propose des <strong>visuels modernes</strong>, une mise en page soignée et des micro‑services digitaux rapides et fiables. Mon objectif est de répondre aux besoins de mes clients avec précision, en m'assurant que chaque livrable reflète leur image.</p>
+      <p>Je travaille avec <strong>sérieux, créativité et envie d'apprendre</strong> chaque jour, en me formant régulièrement pour améliorer la qualité de mon travail.</p>
+    </div>
+
+    <div>
+      <div class="highlight-item">
+        <span class="hi-icon">📍</span>
+        <div>
+          <p class="hi-label">Localisation</p>
+          <p class="hi-value">Maroc</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <span class="hi-icon">💼</span>
+        <div>
+          <p class="hi-label">Disponibilité</p>
+          <p class="hi-value">Freelance · Missions courtes & longues</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <span class="hi-icon">🎯</span>
+        <div>
+          <p class="hi-label">Cibles</p>
+          <p class="hi-value">Petites entreprises, créateurs, startups locales</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <span class="hi-icon">🌍</span>
+        <div>
+          <p class="hi-label">Langues</p>
+          <p class="hi-value">Arabe · Français</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <span class="hi-icon">🚀</span>
+        <div>
+          <p class="hi-label">Profil</p>
+          <p class="hi-value">Débutante motivée, apprentissage continu</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <div>
+      <p class="section-eyebrow">Ce que je maîtrise</p>
+      <h2 class="section-title">Compétences</h2>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-columns">
+    <div>
+      <p class="skills-col-title">💡 Compétences Digitales</p>
+      <div class="skill-item"><span class="si-dot"></span><span class="si-text">Création de visuels simples sur Canva</span></div>
+      <div class="skill-item"><span class="si-dot"></span><span class="si-text">Mise en page de documents (Word, PowerPoint)</span></div>
+      <div class="skill-item"><span class="si-dot"></span><span class="si-text">Création de stories et posts Instagram</span></div>
+      <div class="skill-item"><span class="si-dot"></span><span class="si-text">Retouches d'images basiques</span></div>
+      <div class="skill-item"><span class="si-dot"></span><span class="si-text">Organisation de fichiers et tâches digitales</span></div>
+    </div>
+
+    <div>
+      <p class="skills-col-title">🌟 Compétences Personnelles</p>
+      <div class="skills-perso">
+        <div class="perso-chips">
+          <span class="chip">Sérieuse</span>
+          <span class="chip">Organisée</span>
+          <span class="chip">Motivée</span>
+          <span class="chip">Apprentissage rapide</span>
+          <span class="chip">Sens du détail</span>
+          <span class="chip">Bonne communication</span>
+          <span class="chip">Écoute client</span>
+          <span class="chip">Fiable</span>
+          <span class="chip">Créative</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS & AMBITIONS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <div>
+      <p class="section-eyebrow">Ma vision</p>
+      <h2 class="section-title">Projets & Ambitions</h2>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <p class="projects-intro">« Je construis chaque jour les bases d'une pratique digitale solide. Voici les objectifs qui guident mon parcours. »</p>
+
+  <div class="ambitions-grid">
+    <div class="amb-card">
+      <p class="amb-number">01</p>
+      <h3 class="amb-title">Développer mes compétences</h3>
+      <p class="amb-desc">Me former régulièrement en création de contenu et design digital pour améliorer la qualité de mes livrables.</p>
+    </div>
+    <div class="amb-card">
+      <p class="amb-number">02</p>
+      <h3 class="amb-title">Construire mon portfolio</h3>
+      <p class="amb-desc">Créer un portfolio professionnel riche en visuels variés qui reflète l'étendue de mes capacités créatives.</p>
+    </div>
+    <div class="amb-card">
+      <p class="amb-number">03</p>
+      <h3 class="amb-title">Collaborer localement</h3>
+      <p class="amb-desc">Travailler avec des petites entreprises locales et des créateurs pour bâtir une expérience concrète et des références.</p>
+    </div>
+    <div class="amb-card">
+      <p class="amb-number">04</p>
+      <h3 class="amb-title">Élargir mes services</h3>
+      <p class="amb-desc">Proposer progressivement la gestion de réseaux sociaux, le mini-branding et des services de communication plus complets.</p>
+    </div>
+    <div class="amb-card">
+      <p class="amb-number">05</p>
+      <h3 class="amb-title">Formation continue</h3>
+      <p class="amb-desc">Apprendre de nouveaux outils et tendances digitales pour rester à jour et offrir des résultats toujours plus qualitatifs.</p>
+    </div>
+    <div class="amb-card" style="background: var(--rose); border-color: var(--rose);">
+      <p class="amb-number" style="color: rgba(255,255,255,0.25);">✦</p>
+      <h3 class="amb-title" style="color: white; font-family: 'Playfair Display', serif;">Travaillons ensemble</h3>
+      <p class="amb-desc" style="color: rgba(255,255,255,0.82);">Vous avez un projet ? Je suis disponible et motivée à vous accompagner dès maintenant.</p>
+      <a href="#contact" style="display:inline-block; margin-top:1.2rem; font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:white; text-decoration:none; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom:0.2rem;">Me contacter →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <div>
+      <p class="section-eyebrow">Travaillons ensemble</p>
+      <h2 class="section-title" style="color:#F9F6F1;">Contact</h2>
+    </div>
+    <div class="section-line" style="background: linear-gradient(to right, rgba(196,126,138,0.25), transparent);"></div>
+  </div>
+
+  <div class="contact-layout">
+    <div>
+      <p class="contact-intro">Vous avez besoin de visuels, d'une mise en page soignée ou d'aide pour votre présence en ligne ? Contactez-moi, je serai ravie d'échanger sur votre projet.</p>
+
+      <div>
+        <a href="mailto:maroua@email.com" class="contact-link">
+          <div class="cl-icon">✉</div>
+          <div>
+            <span class="cl-label">Email</span>
+            <span class="cl-value">maroua@email.com</span>
+          </div>
+        </a>
+        <a href="https://wa.me/" class="contact-link">
+          <div class="cl-icon">📱</div>
+          <div>
+            <span class="cl-label">WhatsApp</span>
+            <span class="cl-value">+212 6 00 00 00 00</span>
+          </div>
+        </a>
+        <a href="https://instagram.com/" class="contact-link">
+          <div class="cl-icon">◈</div>
+          <div>
+            <span class="cl-label">Instagram</span>
+            <span class="cl-value">@maroua.digital</span>
+          </div>
+        </a>
+        <a href="https://linkedin.com/" class="contact-link">
+          <div class="cl-icon">◉</div>
+          <div>
+            <span class="cl-label">LinkedIn</span>
+            <span class="cl-value">Maroua Touimi Benjelloun</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-field">
+          <label>Votre prénom</label>
+          <input type="text" placeholder="Fatima">
+        </div>
+        <div class="form-field">
+          <label>Votre email</label>
+          <input type="email" placeholder="fatima@exemple.com">
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Sujet</label>
+        <input type="text" placeholder="Création de visuels Instagram…">
+      </div>
+      <div class="form-field">
+        <label>Votre message</label>
+        <textarea rows="5" placeholder="Décrivez votre projet ou besoin…"></textarea>
+      </div>
+      <button class="btn-rose">Envoyer le message →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Maroua Touimi Benjelloun — Tous droits réservés</p>
+  <p>Fait avec <span class="footer-heart">♥</span> · Assistante Digitale & Créatrice de Contenu</p>
+</footer>
+
+</body>
+</html>
